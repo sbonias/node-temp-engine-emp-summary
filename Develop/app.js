@@ -14,48 +14,59 @@ const render = require("./lib/htmlRenderer");
 // and to create objects for each team member (using the correct classes as blueprints!)
 // https://www.npmjs.com/package/inquirer/v/0.2.3
 
-const primaryQuestions = () =>
-  inquirer.prompt(
-    /* Pass your questions in here */
-    [
-      {
-        type: "input",
-        message: "Enter Employee Name",
-        name: "name",
-      },
-      {
-        type: "input",
-        message: "Enter Employee Id",
-        name: "id",
-      },
-      {
-        type: "input",
-        message: "Enter Employee Email",
-        name: "email",
-      },
-      {
-        type: "checkbox",
-        message: "Select Employee Role",
-        name: "role",
-        choices: [
-          {
-            name: "Engineer",
-          },
-          {
-            name: "Manager",
-          },
-          {
-            name: "Intern",
-          },
-        ],
-      },
-    ],
-    function (answers) {
-      // Use user feedback for... whatever!!
-      // will require conditional statement based on "role" selection
-      // to run related inquirer.prompt function
-    }
-  );
+const employeeQuestions = () =>
+  inquirer
+    .prompt(
+      /* Pass your questions in here */
+      [
+        {
+          type: "input",
+          message: "Enter Employee Name",
+          name: "name",
+        },
+        {
+          type: "input",
+          message: "Enter Employee Id",
+          name: "id",
+        },
+        {
+          type: "input",
+          message: "Enter Employee Email",
+          name: "email",
+        },
+        {
+          type: "checkbox",
+          message: "Select Employee Role",
+          name: "role",
+          choices: [
+            {
+              name: "Engineer",
+            },
+            {
+              name: "Manager",
+            },
+            {
+              name: "Intern",
+            },
+          ],
+        },
+      ]
+    )
+    // Use user feedback for... whatever!!
+    // will require conditional statement based on "role" selectio to run additional inquirer.prompt function
+    // applied "toString()" so that the value I was comparing against was a string as opposed to an array
+    .then((answers) => {
+      console.log(answers.role.toString());
+      if (answers.role.toString() === "Engineer") {
+        engineerQuestions();
+      }
+      if (answers.role.toString() === "Manager") {
+        managerQuestions();
+      }
+      if (answers.role.toString() === "Intern") {
+        internQuestions();
+      }
+    });
 
 const engineerQuestions = () =>
   inquirer.prompt(
@@ -101,6 +112,8 @@ const internQuestions = () =>
       // Use user feedback for... whatever!!
     }
   );
+
+employeeQuestions();
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
