@@ -12,17 +12,95 @@ const render = require("./lib/htmlRenderer");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
-
 // https://www.npmjs.com/package/inquirer/v/0.2.3
 
-inquirer.prompt(
-  [
+const primaryQuestions = () =>
+  inquirer.prompt(
     /* Pass your questions in here */
-  ],
-  function (answers) {
-    // Use user feedback for... whatever!!
-  }
-);
+    [
+      {
+        type: "input",
+        message: "Enter Employee Name",
+        name: "name",
+      },
+      {
+        type: "input",
+        message: "Enter Employee Id",
+        name: "id",
+      },
+      {
+        type: "input",
+        message: "Enter Employee Email",
+        name: "email",
+      },
+      {
+        type: "checkbox",
+        message: "Select Employee Role",
+        name: "role",
+        choices: [
+          {
+            name: "Engineer",
+          },
+          {
+            name: "Manager",
+          },
+          {
+            name: "Intern",
+          },
+        ],
+      },
+    ],
+    function (answers) {
+      // Use user feedback for... whatever!!
+      // will require conditional statement based on "role" selection
+      // to run related inquirer.prompt function
+    }
+  );
+
+const engineerQuestions = () =>
+  inquirer.prompt(
+    /* Pass your questions in here */
+    [
+      {
+        type: "input",
+        message: "Enter GitHub UserName",
+        name: "github",
+      },
+    ],
+    function (answers) {
+      // Use user feedback for... whatever!!
+    }
+  );
+
+const managerQuestions = () =>
+  inquirer.prompt(
+    /* Pass your questions in here */
+    [
+      {
+        type: "input",
+        message: "Enter Office Number",
+        name: "officeNumber",
+      },
+    ],
+    function (answers) {
+      // Use user feedback for... whatever!!
+    }
+  );
+
+const internQuestions = () =>
+  inquirer.prompt(
+    /* Pass your questions in here */
+    [
+      {
+        type: "input",
+        message: "Enter School Intern is Currently Attending",
+        name: "school",
+      },
+    ],
+    function (answers) {
+      // Use user feedback for... whatever!!
+    }
+  );
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
