@@ -14,7 +14,7 @@ class Employee {
     return this.name;
   }
   // return id function
-  getID() {
+  getId() {
     return this.id;
   }
   // return email function

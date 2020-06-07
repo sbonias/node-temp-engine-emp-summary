@@ -10,9 +10,19 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+
+// https://www.npmjs.com/package/inquirer/v/0.2.3
+
+inquirer.prompt(
+  [
+    /* Pass your questions in here */
+  ],
+  function (answers) {
+    // Use user feedback for... whatever!!
+  }
+);
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
