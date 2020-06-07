@@ -69,50 +69,76 @@ const employeeQuestions = () =>
     });
 
 const engineerQuestions = () =>
-  inquirer.prompt(
-    /* Pass your questions in here */
-    [
-      {
-        type: "input",
-        message: "Enter GitHub UserName",
-        name: "github",
-      },
-    ],
-    function (answers) {
-      // Use user feedback for... whatever!!
-    }
-  );
+  inquirer
+    .prompt(
+      /* Pass your questions in here */
+      [
+        {
+          type: "input",
+          message: "Enter GitHub UserName",
+          name: "github",
+        },
+      ]
+    )
+    .then((answers) => {
+      addAnotherEmployee();
+    });
 
 const managerQuestions = () =>
-  inquirer.prompt(
-    /* Pass your questions in here */
-    [
-      {
-        type: "input",
-        message: "Enter Office Number",
-        name: "officeNumber",
-      },
-    ],
-    function (answers) {
-      // Use user feedback for... whatever!!
-    }
-  );
+  inquirer
+    .prompt(
+      /* Pass your questions in here */
+      [
+        {
+          type: "input",
+          message: "Enter Office Number",
+          name: "officeNumber",
+        },
+      ]
+    )
+    .then((answers) => {
+      addAnotherEmployee();
+    });
 
 const internQuestions = () =>
-  inquirer.prompt(
-    /* Pass your questions in here */
-    [
-      {
-        type: "input",
-        message: "Enter School Intern is Currently Attending",
-        name: "school",
-      },
-    ],
-    function (answers) {
-      // Use user feedback for... whatever!!
-    }
-  );
+  inquirer
+    .prompt(
+      /* Pass your questions in here */
+      [
+        {
+          type: "input",
+          message: "Enter School Intern is Currently Attending",
+          name: "school",
+        },
+      ]
+    )
+    .then((answers) => {
+      addAnotherEmployee();
+    });
 
+// Asks the user if they want to add another employee
+const addAnotherEmployee = () =>
+  inquirer
+    .prompt(
+      /* Pass your questions in here */
+      [
+        {
+          type: "confirm",
+          message: "Would you like to add another employee?",
+          name: "choice",
+        },
+      ]
+    )
+    .then((val) => {
+      console.log(val);
+      if (val.choice === true) {
+        employeeQuestions();
+      } else {
+        //will need to run render function at this point
+      }
+    });
+
+// calling the main function so that it runs
 employeeQuestions();
 
 // After the user has input all employees desired, call the `render` function (required
