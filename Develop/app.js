@@ -80,7 +80,15 @@ const engineerQuestions = () =>
       ]
     )
     .then((answers) => {
-      teamArray.push(answers.name, answers.id, answers.email, answers.github);
+      // creating an object with the "new operator"
+      const newEngineer = new Engineer(
+        answers.name,
+        answers.id,
+        answers.email,
+        answers.github
+      );
+      // pushing the newly created object to the "teamArray"
+      teamArray.push(newEngineer);
       console.log(teamArray);
     })
     .then((answers) => {
@@ -115,12 +123,15 @@ const managerQuestions = () =>
       ]
     )
     .then((answers) => {
-      teamArray.push(
+      // creating an object with the "new operator"
+      const newManager = new Manager(
         answers.name,
         answers.id,
         answers.email,
         answers.officeNumber
       );
+      // pushing the newly created object to the "teamArray"
+      teamArray.push(newManager);
       console.log(teamArray);
     })
     .then((answers) => {
@@ -155,7 +166,15 @@ const internQuestions = () =>
       ]
     )
     .then((answers) => {
-      teamArray.push(answers.name, answers.id, answers.email, answers.school);
+      // creating an object with the "new operator"
+      const newIntern = new Intern(
+        answers.name,
+        answers.id,
+        answers.email,
+        answers.school
+      );
+      // pushing the newly created object to the "teamArray"
+      teamArray.push(newIntern);
       console.log(teamArray);
     })
     .then((answers) => {
