@@ -10,48 +10,32 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+let teamArray = [];
+
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 // https://www.npmjs.com/package/inquirer/v/0.2.3
 
-const employeeQuestions = () =>
+const createEmployee = () =>
   inquirer
-    .prompt(
-      /* Pass your questions in here */
-      [
-        {
-          type: "input",
-          message: "Enter Employee Name",
-          name: "name",
-        },
-        {
-          type: "input",
-          message: "Enter Employee Id",
-          name: "id",
-        },
-        {
-          type: "input",
-          message: "Enter Employee Email",
-          name: "email",
-        },
-        {
-          type: "checkbox",
-          message: "Select Employee Role",
-          name: "role",
-          choices: [
-            {
-              name: "Engineer",
-            },
-            {
-              name: "Manager",
-            },
-            {
-              name: "Intern",
-            },
-          ],
-        },
-      ]
-    )
+    .prompt([
+      {
+        type: "checkbox",
+        message: "Select Employee Role",
+        name: "role",
+        choices: [
+          {
+            name: "Engineer",
+          },
+          {
+            name: "Manager",
+          },
+          {
+            name: "Intern",
+          },
+        ],
+      },
+    ])
     // Use user feedback for... whatever!!
     // will require conditional statement based on "role" selectio to run additional inquirer.prompt function
     // applied "toString()" so that the value I was comparing against was a string as opposed to an array
@@ -75,11 +59,30 @@ const engineerQuestions = () =>
       [
         {
           type: "input",
+          message: "Enter Employee Name",
+          name: "name",
+        },
+        {
+          type: "input",
+          message: "Enter Employee Id",
+          name: "id",
+        },
+        {
+          type: "input",
+          message: "Enter Employee Email",
+          name: "email",
+        },
+        {
+          type: "input",
           message: "Enter GitHub UserName",
           name: "github",
         },
       ]
     )
+    .then((answers) => {
+      teamArray.push(answers.name, answers.id, answers.email, answers.github);
+      console.log(teamArray);
+    })
     .then((answers) => {
       addAnotherEmployee();
     });
@@ -91,11 +94,35 @@ const managerQuestions = () =>
       [
         {
           type: "input",
+          message: "Enter Employee Name",
+          name: "name",
+        },
+        {
+          type: "input",
+          message: "Enter Employee Id",
+          name: "id",
+        },
+        {
+          type: "input",
+          message: "Enter Employee Email",
+          name: "email",
+        },
+        {
+          type: "input",
           message: "Enter Office Number",
           name: "officeNumber",
         },
       ]
     )
+    .then((answers) => {
+      teamArray.push(
+        answers.name,
+        answers.id,
+        answers.email,
+        answers.officeNumber
+      );
+      console.log(teamArray);
+    })
     .then((answers) => {
       addAnotherEmployee();
     });
@@ -107,11 +134,30 @@ const internQuestions = () =>
       [
         {
           type: "input",
+          message: "Enter Employee Name",
+          name: "name",
+        },
+        {
+          type: "input",
+          message: "Enter Employee Id",
+          name: "id",
+        },
+        {
+          type: "input",
+          message: "Enter Employee Email",
+          name: "email",
+        },
+        {
+          type: "input",
           message: "Enter School Intern is Currently Attending",
           name: "school",
         },
       ]
     )
+    .then((answers) => {
+      teamArray.push(answers.name, answers.id, answers.email, answers.school);
+      console.log(teamArray);
+    })
     .then((answers) => {
       addAnotherEmployee();
     });
@@ -132,14 +178,14 @@ const addAnotherEmployee = () =>
     .then((val) => {
       console.log(val);
       if (val.choice === true) {
-        employeeQuestions();
+        createEmployee();
       } else {
         //will need to run render function at this point
       }
     });
 
 // calling the main function so that it runs
-employeeQuestions();
+createEmployee();
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
