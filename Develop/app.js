@@ -199,16 +199,18 @@ const addAnotherEmployee = () =>
       if (val.choice === true) {
         createEmployee();
       } else {
-        //will need to run render function at this point
+        // After the user has input all employees desired, call the `render` function (required
+        // above) and pass in an array containing all employee objects; the `render` function will
+        // generate and return a block of HTML including templated divs for each employee!
+        // will need to run render function at this point
+        const dorender = render(teamArray);
+        // needed to return result of render function with passing array to visualize, otherwise could not view it
+        console.log(dorender);
       }
     });
 
 // calling the main function so that it runs
 createEmployee();
-
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
