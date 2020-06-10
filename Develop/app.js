@@ -194,6 +194,9 @@ const addAnotherEmployee = () =>
         },
       ]
     )
+    // add conditional statement to handle Yes vs No response
+    // if user selects Yes THEN re-run createEmployee Function (continue process)
+    // if user selects No THEN run render function + fs.writeFile (end process)
     .then((val) => {
       console.log(val);
       if (val.choice === true) {
